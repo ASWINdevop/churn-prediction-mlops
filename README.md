@@ -59,6 +59,8 @@ churn-project/
 ```
 
  How to Run
+0. Download .csv from https://www.kaggle.com/datasets/blastchar/telco-customer-churn and place in the data folder
+
 Option A: Using Docker (Recommended)
 Build the Image:
 
