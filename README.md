@@ -83,15 +83,13 @@ Access the API: Open your browser to: http://localhost/docs
 Option B: Local Python Environment
 Install Dependencies:
 
+Run
 
 ```bash
 python run_pipeline.py
 ```
-Run
-```bash
 
 Start the Server:
-
 
 ```bash
 uvicorn app.main:app --reload
