@@ -1,0 +1,25 @@
+# .gitignore
+
+# 1. Ignore the virtual environment
+venv/
+env/
+
+# 2. Ignore data (we don't push massive CSVs to GitHub)
+data/*.csv
+
+# 3. Ignore Python cache files
+__pycache__/
+*.pyc
+
+# 4. Ignore system files
+.DS_Store
+
+# 5. Ignore model files (often too large for standard Git)
+models/*.pkl
+models/*.joblib
+
+*.tar
+
+mlruns/
+
+*.db
