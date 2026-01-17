@@ -2,7 +2,7 @@ from fastapi import FastAPI, HTTPException
 import joblib
 import os
 import pandas as pd
-from.schemas import CustomerData
+from app.schemas import CustomerData 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(BASE_DIR, 'models', 'xgb_model.joblib')

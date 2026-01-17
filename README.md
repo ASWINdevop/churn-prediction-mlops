@@ -86,7 +86,7 @@ Install Dependencies:
 Run
 
 ```bash
-python run_pipeline.py
+python src/run_pipeline.py
 ```
 
 Start the Server:
