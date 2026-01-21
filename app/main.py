@@ -3,11 +3,21 @@ import joblib
 import os
 import pandas as pd
 from app.schemas import CustomerData 
+from prometheus_fastapi_instrumentator import Instrumentator
+from prometheus_client import Histogram
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MODEL_PATH = os.path.join(BASE_DIR, 'models', 'xgb_model.joblib')
 
 app =FastAPI(title = "Customer Churn Prediction API")
+
+CHURN_PROBABILITY_METRIC = Histogram(
+    "model_churn_probability", 
+    "Probability score output by the churn model",
+    buckets=[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0]
+)
+
+Instrumentator().instrument(app).expose(app)
 
 if not os.path.exists(MODEL_PATH):
     raise FileNotFoundError(f"Model file not found at {MODEL_PATH}. Please train the model before starting the API.")
@@ -44,6 +54,8 @@ def predict_churn(data: CustomerData):
         # 2. Apply custom threshold
         prediction = 1 if churn_probability >= CHURN_THRESHOLD else 0
 
+        CHURN_PROBABILITY_METRIC.observe(churn_probability)
+        
         return{
             "prediction": int(prediction),
             "churn_probability": float(churn_probability),

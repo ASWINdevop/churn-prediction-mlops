@@ -1,0 +1,31 @@
+version: '3.8'
+
+services:
+  # 1. YOUR API SERVICE
+  churn-api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app  # Live reload: Changes in code update inside Docker immediately
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+
+  # 2. PROMETHEUS (The Database)
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    depends_on:
+      - churn-api
+
+  # 3. GRAFANA (The Dashboard)
+  grafana:
+    image: grafana/grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    depends_on:
+      - prometheus
