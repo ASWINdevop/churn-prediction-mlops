@@ -68,8 +68,10 @@ Build the Image:
 
 ```bash
 
-docker build -t churn-prediction-app .
+docker-compose up --build
 ```
+Access Dashboard at ``` localhost:3000 ```
+
 
 Run the Container:
 
