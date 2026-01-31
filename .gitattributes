@@ -1,6 +1,10 @@
 # Force Python recognition
 *.py linguist-language=Python
 
+# Treat notebooks as Python instead of Notebook
+*.ipynb linguist-language=Python
+
+
 # Ignore HTML files (like docs or generated assets)
 *.html linguist-detectable=false
 
