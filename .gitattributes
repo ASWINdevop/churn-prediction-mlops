@@ -1,0 +1,9 @@
+# Force Python recognition
+*.py linguist-language=Python
+
+# Ignore HTML files (like docs or generated assets)
+*.html linguist-detectable=false
+
+# Optional: ignore minified JS/CSS if present
+*.min.js linguist-detectable=false
+*.min.css linguist-detectable=false
