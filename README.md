@@ -80,7 +80,7 @@ Run the Container:
 docker run -p 80:80 churn-prediction-app
 ```
 
-Access the API: Open your browser to: http://localhost/docs
+Access the API: Open your browser to: http://127.0.0.1:8000/docs
 
 Option B: Local Python Environment
 Install Dependencies:
